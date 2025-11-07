@@ -1,0 +1,48 @@
+# perplexity_sweep.yaml
+program: train_sweep.py
+method: bayes
+metric:
+  name: eval_best_perplexity_mean
+  goal: minimize
+
+command:
+  - ${env}
+  - python
+  - ${program}
+  - ${args_no_hyphens}
+
+parameters:
+  trainer.lr:
+    distribution: log_uniform_values
+    min: 1e-4
+    max: 1e-3
+  
+  trainer.num_warmup_steps:
+    values: [500, 1000, 1500]
+  
+  trainer.batch_size:
+    values: [32, 64]
+  
+  model.model_kwargs.hidden_size:
+    values: [256, 512]
+  
+  experiment.group:
+    value: "climb-perplexity-sweep"
+  
+  experiment.seed:
+    value: 42
+  
+  trainer.max_training_steps:
+    value: 50000
+  
+  trainer.eval_perplexity:
+    value: true
+  
+  trainer.eval_blimp:
+    value: false
+  
+  trainer.eval_glue:
+    value: false
+  
+  trainer.eval_msgs:
+    value: false

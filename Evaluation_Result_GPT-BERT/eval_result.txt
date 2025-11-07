@@ -1,0 +1,359 @@
+Causal-Only:
+
+(babylm_env) (base) llin90@Longhaos-Air evaluation-pipeline-2025 % ./eval_zero_shot_fast.sh \
+  /Users/llin90/Desktop/babylm-baseline-10m-gpt-bert-causal-focus \
+  main \
+  causal \
+  evaluation_data/fast_eval
+100%|█████████████████████████████████████████| 210/210 [01:46<00:00,  1.98it/s]
+1.0	69.19
+TEMPERATURE: 1.00
+### FIELD ACCURACY
+syntax: 65.37
+syntax/semantics: 67.00
+semantics: 60.50
+morphology: 80.75
+### UID ACCURACY
+ellipsis_n_bar_2: 38.00
+principle_A_case_2: 71.50
+existential_there_quantifiers_1: 97.00
+causative: 59.00
+distractor_agreement_relative_clause: 50.50
+anaphor_number_agreement: 95.50
+wh_vs_that_no_gap: 98.50
+animate_subject_trans: 78.00
+superlative_quantifiers_1: 49.50
+determiner_noun_agreement_irregular_2: 86.50
+only_npi_scope: 98.50
+irregular_plural_subject_verb_agreement_1: 79.00
+sentential_negation_npi_scope: 48.00
+principle_A_reconstruction: 30.00
+left_branch_island_simple_question: 67.50
+passive_1: 84.50
+drop_argument: 73.00
+existential_there_quantifiers_2: 18.50
+determiner_noun_agreement_with_adj_2: 85.00
+wh_island: 67.00
+ellipsis_n_bar_1: 71.00
+principle_A_case_1: 100.00
+superlative_quantifiers_2: 66.00
+inchoative: 45.50
+wh_questions_subject_gap: 94.00
+adjunct_island: 86.50
+complex_NP_island: 49.50
+wh_vs_that_with_gap: 37.50
+irregular_plural_subject_verb_agreement_2: 81.50
+determiner_noun_agreement_irregular_1: 80.50
+expletive_it_object_raising: 68.00
+wh_questions_subject_gap_long_distance: 92.50
+coordinate_structure_constraint_complex_left_branch: 45.50
+only_npi_licensor_present: 100.00
+determiner_noun_agreement_with_adjective_1: 86.50
+passive_2: 80.00
+regular_plural_subject_verb_agreement_1: 84.50
+determiner_noun_agreement_with_adj_irregular_2: 86.00
+animate_subject_passive: 68.50
+npi_present_1: 38.50
+irregular_past_participle_adjectives: 78.00
+tough_vs_raising_1: 31.50
+sentential_negation_npi_licensor_present: 99.50
+existential_there_object_raising: 67.50
+wh_vs_that_with_gap_long_distance: 6.00
+sentential_subject_island: 47.00
+intransitive: 64.50
+principle_A_domain_3: 50.50
+principle_A_domain_1: 98.00
+determiner_noun_agreement_1: 89.00
+left_branch_island_echo_question: 25.50
+anaphor_gender_agreement: 74.00
+irregular_past_participle_verbs: 78.50
+tough_vs_raising_2: 85.00
+matrix_question_npi_licensor_present: 30.00
+npi_present_2: 45.50
+determiner_noun_agreement_with_adj_irregular_1: 82.50
+regular_plural_subject_verb_agreement_2: 74.00
+wh_vs_that_no_gap_long_distance: 98.00
+existential_there_subject_raising: 73.00
+transitive: 74.00
+distractor_agreement_relational_noun: 71.50
+principle_A_c_command: 57.00
+wh_questions_object_gap: 78.50
+coordinate_structure_constraint_object_extraction: 70.00
+principle_A_domain_2: 59.50
+determiner_noun_agreement_2: 90.50
+### LINGUISTICS_TERM ACCURACY
+ellipsis: 54.50
+binding: 66.64
+quantifiers: 57.75
+argument_structure: 68.64
+subject_verb_agreement: 73.50
+anaphor_agreement: 84.75
+filler_gap_dependency: 72.14
+s-selection: 73.25
+determiner_noun_agreement: 85.81
+npi_licensing: 65.71
+island_effects: 57.31
+control_raising: 65.00
+irregular_forms: 78.25
+### AVERAGE ACCURACY
+69.19
+100%|█████████████████████████████████████████████| 4/4 [00:02<00:00,  1.44it/s]
+1.0	58.00
+TEMPERATURE: 1.00
+### FIELD ACCURACY
+supplement: 58.00
+### UID ACCURACY
+qa_congruence_easy: 50.00
+turn_taking: 54.00
+subject_aux_inversion: 76.00
+qa_congruence_tricky: 48.00
+hypernym: 62.00
+### LINGUISTICS_TERM ACCURACY
+supplement: 58.00
+### AVERAGE ACCURACY
+58.00
+100%|███████████████████████████████████████████| 18/18 [00:15<00:00,  1.15it/s]
+1.0	50.82
+TEMPERATURE: 1.00
+### UID ACCURACY
+social-relations: 49.00
+physical-relations: 56.00
+agent-properties: 55.00
+physical-interactions: 42.00
+material-dynamics: 50.00
+material-properties: 53.00
+social-properties: 55.00
+social-interactions: 52.00
+quantitative-properties: 45.00
+spatial-relations: 51.00
+physical-dynamics: 51.00
+### CONTEXT_TYPE ACCURACY
+indirect: 49.59
+direct: 52.34
+### CONTEXT_CONTRAST ACCURACY
+variable swap: 54.98
+antonym: 49.00
+other: 56.79
+active-passive: 66.67
+negation: 60.53
+variable_swap: 33.33
+material: 48.20
+number: 40.91
+### TARGET_CONTRAST ACCURACY
+variable swap: 54.19
+concept swap: 49.94
+### AVERAGE ACCURACY
+50.82
+100%|█████████████████████████████████████████████| 4/4 [00:02<00:00,  1.83it/s]
+1.0	0.75
+TEMPERATURE: 1.00
+### UID SPEARMAN'S RHO
+avg: 0.75
+### AVERAGE SPEARMAN'S RHO
+0.75
+100%|█████████████████████████████████████████████| 1/1 [00:01<00:00,  1.09s/it]
+1.0	-0.31
+TEMPERATURE: 1.00
+### UID SPEARMAN'S RHO
+avg: -0.31
+### AVERAGE SPEARMAN'S RHO
+-0.31
+100%|███████████████████████████████████████████| 50/50 [14:59<00:00, 17.99s/it]
+1.0	36.77
+TEMPERATURE: 1.00
+### UID ACCURACY
+regular_0_ops: 26.73
+regular_1_ops: 39.70
+regular_2_ops: 39.27
+regular_3_ops: 35.81
+regular_4_ops: 33.80
+regular_5_ops: 45.28
+regular: 36.77
+### AVERAGE ACCURACY
+36.77
+100%|███████████████████████████████████████| 1726/1726 [01:08<00:00, 25.21it/s]
+EYE TRACKING SCORE: 7.85
+SELF-PACED READING SCORE: 2.93
+
+
+
+
+
+Masked-Only:
+
+Last login: Mon Oct 27 20:59:41 on ttys013
+(base) llin90@Longhaos-Air ~ % cd /Users/llin90/Desktop/evaluation-pipeline-2025 
+source babylm_env/bin/activate
+./eval_zero_shot_fast.sh \
+  /Users/llin90/Desktop/babylm-baseline-10m-gpt-bert-mask-focus \
+  main \
+  mlm \
+  evaluation_data/fast_eval
+100%|█████████████████████████████████████████| 210/210 [23:17<00:00,  6.66s/it]
+1.0	49.77
+TEMPERATURE: 1.00
+### FIELD ACCURACY
+syntax: 50.79
+syntax/semantics: 59.43
+semantics: 25.56
+morphology: 52.89
+### UID ACCURACY
+ellipsis_n_bar_2: 22.00
+principle_A_case_2: 30.50
+existential_there_quantifiers_1: 62.00
+causative: 42.00
+distractor_agreement_relative_clause: 46.00
+anaphor_number_agreement: 56.00
+wh_vs_that_no_gap: 81.50
+animate_subject_trans: 59.00
+superlative_quantifiers_1: 11.00
+determiner_noun_agreement_irregular_2: 60.50
+only_npi_scope: 2.50
+irregular_plural_subject_verb_agreement_1: 54.50
+sentential_negation_npi_scope: 90.00
+principle_A_reconstruction: 79.50
+left_branch_island_simple_question: 56.00
+passive_1: 58.50
+drop_argument: 70.00
+existential_there_quantifiers_2: 39.50
+determiner_noun_agreement_with_adj_2: 52.00
+wh_island: 86.50
+ellipsis_n_bar_1: 45.00
+principle_A_case_1: 91.00
+superlative_quantifiers_2: 5.00
+inchoative: 40.50
+wh_questions_subject_gap: 38.00
+adjunct_island: 36.50
+complex_NP_island: 51.00
+wh_vs_that_with_gap: 21.00
+irregular_plural_subject_verb_agreement_2: 65.50
+determiner_noun_agreement_irregular_1: 52.50
+expletive_it_object_raising: 55.00
+wh_questions_subject_gap_long_distance: 27.50
+coordinate_structure_constraint_complex_left_branch: 48.50
+only_npi_licensor_present: 0.00
+determiner_noun_agreement_with_adjective_1: 58.50
+passive_2: 58.00
+regular_plural_subject_verb_agreement_1: 49.50
+determiner_noun_agreement_with_adj_irregular_2: 55.00
+animate_subject_passive: 55.50
+npi_present_1: 18.00
+irregular_past_participle_adjectives: 44.00
+tough_vs_raising_1: 42.50
+sentential_negation_npi_licensor_present: 52.00
+existential_there_object_raising: 58.50
+wh_vs_that_with_gap_long_distance: 29.00
+sentential_subject_island: 50.00
+intransitive: 53.00
+principle_A_domain_3: 48.00
+principle_A_domain_1: 97.50
+determiner_noun_agreement_1: 58.50
+left_branch_island_echo_question: 55.00
+anaphor_gender_agreement: 40.00
+irregular_past_participle_verbs: 51.00
+tough_vs_raising_2: 67.00
+matrix_question_npi_licensor_present: 21.00
+npi_present_2: 21.50
+determiner_noun_agreement_with_adj_irregular_1: 50.50
+regular_plural_subject_verb_agreement_2: 52.00
+wh_vs_that_no_gap_long_distance: 73.50
+existential_there_subject_raising: 62.50
+transitive: 48.00
+distractor_agreement_relational_noun: 49.00
+principle_A_c_command: 46.50
+wh_questions_object_gap: 66.00
+coordinate_structure_constraint_object_extraction: 49.00
+principle_A_domain_2: 61.00
+determiner_noun_agreement_2: 57.00
+### LINGUISTICS_TERM ACCURACY
+ellipsis: 33.50
+binding: 64.86
+quantifiers: 29.38
+argument_structure: 52.86
+subject_verb_agreement: 52.75
+anaphor_agreement: 48.00
+filler_gap_dependency: 48.07
+s-selection: 57.25
+determiner_noun_agreement: 55.56
+npi_licensing: 29.29
+island_effects: 54.06
+control_raising: 57.10
+irregular_forms: 47.50
+### AVERAGE ACCURACY
+49.77
+100%|█████████████████████████████████████████████| 4/4 [00:44<00:00, 11.23s/it]
+1.0	53.20
+TEMPERATURE: 1.00
+### FIELD ACCURACY
+supplement: 53.20
+### UID ACCURACY
+qa_congruence_easy: 38.00
+turn_taking: 46.00
+subject_aux_inversion: 74.00
+qa_congruence_tricky: 56.00
+hypernym: 52.00
+### LINGUISTICS_TERM ACCURACY
+supplement: 53.20
+### AVERAGE ACCURACY
+53.20
+100%|███████████████████████████████████████████| 18/18 [02:04<00:00,  6.94s/it]
+1.0	49.64
+TEMPERATURE: 1.00
+### UID ACCURACY
+social-relations: 54.00
+physical-relations: 46.00
+agent-properties: 45.00
+physical-interactions: 49.00
+material-dynamics: 49.00
+material-properties: 50.00
+social-properties: 53.00
+social-interactions: 53.00
+quantitative-properties: 46.00
+spatial-relations: 52.00
+physical-dynamics: 49.00
+### CONTEXT_TYPE ACCURACY
+indirect: 48.93
+direct: 50.51
+### CONTEXT_CONTRAST ACCURACY
+variable swap: 51.18
+antonym: 48.00
+other: 54.32
+active-passive: 66.67
+negation: 57.89
+variable_swap: 50.00
+material: 47.48
+number: 59.09
+### TARGET_CONTRAST ACCURACY
+variable swap: 49.34
+concept swap: 49.71
+### AVERAGE ACCURACY
+49.64
+100%|█████████████████████████████████████████████| 4/4 [00:46<00:00, 11.74s/it]
+1.0	0.63
+TEMPERATURE: 1.00
+### UID SPEARMAN'S RHO
+avg: 0.63
+### AVERAGE SPEARMAN'S RHO
+0.63
+100%|█████████████████████████████████████████████| 1/1 [00:37<00:00, 37.94s/it]
+1.0	-0.13
+TEMPERATURE: 1.00
+### UID SPEARMAN'S RHO
+avg: -0.13
+### AVERAGE SPEARMAN'S RHO
+-0.13
+100%|█████████████████████████████████████████| 50/50 [1:11:32<00:00, 85.84s/it]1.0	42.43
+TEMPERATURE: 1.00
+### UID ACCURACY
+regular_0_ops: 29.70
+regular_1_ops: 44.65
+regular_2_ops: 42.90
+regular_3_ops: 42.57
+regular_4_ops: 40.67
+regular_5_ops: 54.09
+regular: 42.43
+### AVERAGE ACCURACY
+42.43
+100%|███████████████████████████████████████| 1726/1726 [01:09<00:00, 24.69it/s]
+EYE TRACKING SCORE: 6.54
+SELF-PACED READING SCORE: 1.74

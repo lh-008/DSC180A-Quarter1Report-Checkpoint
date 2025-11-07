@@ -1,0 +1,128 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gpt-bert-masked-job
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: gpt-bert
+        model: masked-only
+    spec:
+      restartPolicy: Never
+      
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                - NVIDIA-A10
+      
+      containers:
+      - name: trainer
+        image: pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+        workingDir: /workspace
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            set -e
+            echo "==================================="
+            echo "GPT-BERT Training: Masked-Only Model"
+            echo "Start time: $(date)"
+            echo "==================================="
+            
+            # Install required packages
+            echo "Installing dependencies..."
+            pip install -q tokenizers tqdm wandb
+            
+            # Fix bug 1: stats/seq_length
+            sed -i '/"stats\/seq_length": train_dataloader.dataset.seq_length,/c\            "stats/seq_length": 128,  # Fixed bug' /workspace/pretraining/train_10m.py
+            
+            # Fix bug 2: set_global_step
+            sed -i '/dataloader._dataset.set_global_step(global_step)/c\    if hasattr(dataloader._dataset, "set_global_step"): dataloader._dataset.set_global_step(global_step)' /workspace/pretraining/train_10m.py
+            
+            echo "Training script patched"
+            
+            # Set up single-GPU distributed training environment
+            export SLURM_PROCID=0
+            export SLURM_LOCALID=0
+            export SLURM_GPUS_ON_NODE=1
+            export WORLD_SIZE=1
+            export MASTER_ADDR=localhost
+            export MASTER_PORT=9999
+            export RANK=0
+            export LOCAL_RANK=0
+            
+            echo "Environment setup complete"
+            echo "CUDA available: $(python -c 'import torch; print(torch.cuda.is_available())')"
+            echo "GPU count: $(python -c 'import torch; print(torch.cuda.device_count())')"
+            echo "GPU name: $(python -c 'import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "N/A")')"
+            
+            cd /workspace/pretraining
+            
+            # Debug output
+            echo "Current directory: $(pwd)"
+            echo "Available memory: $(free -h)"
+            echo "Starting Masked-Only training (100% masked)"
+            
+            python -u train_10m.py \
+              --train_path=/workspace/data/train_10M_tokenized.bin \
+              --valid_path=/workspace/data/dev_10M_tokenized.bin \
+              --config_file=/workspace/configs/small.json \
+              --tokenizer_path=/workspace/tokenizers/tokenizer_10M.json \
+              --output_dir=/workspace/model_checkpoints \
+              --name=masked_only_10M \
+              --hybrid_numerator=1 \
+              --hybrid_denominator=1 \
+              --seq_length=128 \
+              --local_batch_size=16 \
+              --global_batch_size=16 \
+              --learning_rate=1.4e-3 \
+              --max_steps=100000 \
+              --ema_decay=0.999 \
+              --validate_every=5000 \
+              --save_every=5000 \
+              --seed=42 \
+              --optimizer=lamb \
+              --weight_decay=0.1 \
+              --warmup_proportion=0.016 \
+              --cooldown_proportion=0.016 \
+              --mask_p_start=0.3 \
+              --mask_p_end=0.15 \
+              --mask_random_p=0.1 \
+              --mask_keep_p=0.1 \
+              --mixed_precision
+            
+            echo "==================================="
+            echo "Training complete"
+            echo "End time: $(date)"
+            echo "Model saved to: /workspace/model_checkpoints/"
+            echo "==================================="
+            ls -lh /workspace/model_checkpoints/
+        
+        resources:
+          requests:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+        
+        volumeMounts:
+        - name: gpt-bert-storage
+          mountPath: /workspace
+        
+        env:
+        - name: WANDB_MODE
+          value: "disabled"
+      
+      volumes:
+      - name: gpt-bert-storage
+        persistentVolumeClaim:
+          claimName: gpt-bert-storage

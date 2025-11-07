@@ -1,0 +1,68 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: climb-sweep-agent-1
+  namespace: dsc-capstone-25-26
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                - NVIDIA-A10
+
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R root:users /mnt/data && chmod -R 2775 /mnt/data"]
+        volumeMounts:
+        - mountPath: /mnt/data
+          name: storage-volume
+
+      containers:
+      - name: gpu-container
+        image: gitlab-registry.nrp-nautilus.io/zihaozhou/nautilus_tutorial:jupyterhub
+        command: ["/bin/bash", "-c"]
+        args: [
+          "git clone https://github.com/lh-008/CLIMB.git &&\
+          cd CLIMB &&\
+          
+          export WANDB_ENTITY=lemn-lab &&\
+          export WANDB_PROJECT=climb-perplexity-sweep &&\
+          export HF_READ_TOKEN={YOUR_API_KEY} &&\
+          export HF_WRITE_TOKEN={YOUR_API_KEY} &&\
+          export HUGGINGFACE_HUB_TOKEN={YOUR_API_KEY} &&\
+
+          pip install wandb nltk &&\
+          wandb login --relogin #{YOUR_API_KEY} &&\
+          ./setup.sh &&\
+          
+          wandb agent lemn-lab/climb-perplexity-sweep/ymclon1a --count 4 &&\
+          
+          mkdir -p /mnt/data/climb-perplexity-sweep &&\
+          cp -r checkpoints/climb-perplexity-sweep/* /mnt/data/climb-perplexity-sweep/ || true"
+        ]
+        volumeMounts:
+        - mountPath: /mnt/data
+          name: storage-volume
+        resources:
+          requests:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+          limits:
+            memory: "32Gi"
+            cpu: "8"
+            nvidia.com/gpu: "1"
+
+      restartPolicy: Never
+
+      volumes:
+      - name: storage-volume
+        persistentVolumeClaim:
+          claimName: climb-storage
