@@ -1,7 +1,5 @@
 # DSC180A-Quarter1Report-Checkpoint
-_______
-
-<br>
+---
 
 ## Project Information
 **Name:** Longhao Lin  
@@ -51,6 +49,6 @@ Since this project focuses on replication and learning from existing submissions
 This repository contains code from the following repo:
 
 - **GPT-BERT:** [Official implementation of "GPT or BERT: why not both?"](https://github.com/ltgoslo/gpt-bert)
-- **CLIMB:** [Curriculum Learning for Baby Language Models](https://huggingface.co/ltg/gpt-bert-babylm-base)
+- **CLIMB:** [Curriculum Learning for Baby Language Models](https://github.com/codebyzeb/CLIMB)
 
 This repo mainly used resource from above repo for replication and learning purpose.
