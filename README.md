@@ -25,6 +25,22 @@ This repository contains replication work for DSC180A (Weeks 1-6), focusing on r
 ```
 
 ---
+## How to use this repo
+To replicate GPT-BERT, first make sure you have access to a kubernetes based cluster. Under your namespace, run the following command using the training script provided.
+
+To train a causal-only model, use the following command:
+`kubectl apply -f train-causal-only-job.yaml`
+
+To train a masked-only mode, use the following command:
+`kubectl apply -f gpt-bert-masked-only-job.yaml`
+
+To conduct hyperparameter sweeps under CLIMB, first execute the `init_sweep.py` file to get the sweep id.
+`python init_sweep.py`
+
+Using the sweep id we just get, use the following command to conduct hyperparameter sweeps:
+`kubectl apply -f climb-sweep-agent.yaml`
+
+---
 
 ## Project Components
 
